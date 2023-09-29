@@ -1,0 +1,15 @@
+[Unit]
+Description=UniSA Token Server Node JS Instance
+After=network.target
+
+[Service]
+Type=simple
+User=www-ontask
+Environment=NODE_ENV=<%= @nodejs_environment %>
+WorkingDirectory=<%= @www_ontask_home %>/token-server
+SyslogIdentifier=unisa-token-server
+ExecStart=/bin/scl enable <%= @python_version %> <%= @nodejs_version %> <%= @ruby_version %> "node <%= @www_ontask_home %>/token-server/index.js"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

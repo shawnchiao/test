@@ -1,0 +1,21 @@
+[Unit]
+Description=UniSA Ontask Node JS Instance
+After=network.target
+
+[Service]
+Type=simple
+User=www-ontask
+Environment=NODE_ENV=<%= @nodejs_environment %>
+<% if (@newrelic_licence_key != '') and (@newrelic_app_name != '') -%>
+Environment=NEW_RELIC_LICENSE_KEY=<%= @newrelic_licence_key %>
+Environment=NEW_RELIC_APP_NAME=<%= @newrelic_app_name %>
+Environment=NEW_RELIC_LOG=<%= @log_root %>/newrelic/newrelic_agent.log
+<% end -%>
+SyslogIdentifier=unisa-ontask
+Environment=LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib
+WorkingDirectory=<%= @www_ontask_home %>/ontask-web
+ExecStart=/bin/scl enable <%= @python_version %> <%= @nodejs_version %> <%= @ruby_version %> "node <%= @www_ontask_home %>/ontask-web/app.js"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

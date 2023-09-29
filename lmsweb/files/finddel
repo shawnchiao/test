@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# Delete all files older than N days.
+
+USLEEPBIN=`which usleep`
+TOPT="ctime"
+
+PATH=""
+UNITS=""
+EXEC=0
+LIST=0
+USLEEP=0
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -h | --help)
+            echo -e "Usage: finddelete.sh [-u|--units <n>] [-p|--path <basedir>] [-n | --noop] [-s|--sleep <n>] [-t|--timeopt <opt>]"
+            echo -e "\t-u --units\t\t Limit number of time units (e.g. days) in past to delete files."
+            echo -e "\t-s --sleep\t\t Time to sleep between delete operations in microseconds (e.g. 500000 = 0.5 seconds), default is 0."
+            echo -e "\t-p --path\t\t Path to delete from."
+            echo -e "\t-e --execute\t\t Execute deletion, default is to print commands to STDOUT."
+            echo -e "\t-l --list\t\t List files using ls -la"
+            echo -e "\t-t --timeopt\t\t Time option corresponding to --units, either mtime, ctime or atime. Defaults to ctime"
+            exit
+            ;;
+
+        -p | --path)
+            shift
+            PATH=$1
+            ;;
+        -u | --units)
+            shift
+            UNITS=$1
+            ;;
+        -s | --sleep)
+            shift
+            USLEEP=$1
+            ;;
+        -t | --timeopt)
+            shift
+            TOPT=$1
+            ;;
+        -e | --execute)
+            EXEC=1
+            ;;
+        -l | --list)
+            LIST=1
+            ;;
+        *)
+            echo "ERROR: unknown parameter \"$1\""
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+
+re='^[0-9]+$'
+if ! [[ $UNITS =~ $re ]] ; then
+    echo "Unit parameter not specified or not numeric."
+    exit 1;
+fi
+
+if [ "" == $PATH ]; then
+    echo "Path not specified."
+    exit 1;
+fi
+
+if [ ! -d $PATH ]; then
+    echo "Path $PATH does not exist."
+    exit 1;
+fi
+
+
+FINDCMD="/bin/find $PATH -type f -$TOPT +$UNITS"
+if [ "$LIST" == 1 ]; then 
+    $FINDCMD -printf "%Cb %Cd %CY  %p\n"
+else
+    if [ "$EXEC" == 0 ]; then 
+        $FINDCMD | /bin/awk '{print "echo deleting: "$1"; rm -f "$1"; '$USLEEPBIN' '$USLEEP' "}'
+    else
+        $FINDCMD | /bin/xargs -I % -r /bin/sh -c "/bin/rm -f %; $USLEEPBIN $USLEEP"
+    fi
+fi
+

@@ -1,0 +1,81 @@
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+
+if (re_match($syslogtag,"^<%= @name %>-tii_mod_created\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_mod_created.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_mod_created.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_mod_updated\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_mod_updated.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_mod_updated.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_mod_deleted\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_mod_deleted.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_mod_deleted.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_assessable_file_uploaded\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_assessable_file_uploaded.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_assessable_file_uploaded.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_assessable_content_uploaded\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_assessable_content_uploaded.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_assessable_content_uploaded.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_assessable_submitted\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_assessable_submitted.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_assessable_submitted.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_assessable_files_done\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_assessable_files_done.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_assessable_files_done.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_pending\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_pending.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_pending.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_reprocess\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_reprocess.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_reprocess.log")
+<% end -%>
+&stop
+
+if (re_match($syslogtag,"^<%= @name %>-tii_manual_process\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/<%= @name %>-tii_manual_process.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/unisacli/tii_manual_process.log")
+<% end -%>
+&stop

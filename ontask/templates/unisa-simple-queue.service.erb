@@ -1,0 +1,15 @@
+[Unit]
+Description=UniSA Simple Queue Node JS Instance
+After=network.target
+
+[Service]
+Type=simple
+User=www-ontask
+Environment=NODE_ENV=<%= @nodejs_environment %>
+WorkingDirectory=<%= @www_ontask_home %>/simpleQueue
+SyslogIdentifier=unisa-simple-queue
+ExecStart=/bin/scl enable <%= @python_version %> <%= @nodejs_version %> <%= @ruby_version %> "node <%= @www_ontask_home %>/simpleQueue/app.js"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

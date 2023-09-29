@@ -1,0 +1,11 @@
+{
+  "name": "unisa-smtpsink",
+  "version": "1.0.0",
+  "author": "unisa",
+  "summary": null,
+  "license": "",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": []
+}

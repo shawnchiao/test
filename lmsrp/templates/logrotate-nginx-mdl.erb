@@ -1,0 +1,14 @@
+<%= scope['lmsrp::rp_instance_path'] %>/logs/*log {
+    create 0644 root root
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    su root root
+    postrotate
+        /bin/kill -USR1 `cat /var<%= scope['lmsrp::nginx_install_path'] %>/run/nginx/nginx.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+    olddir <%= scope['lmsrp::rp_instance_path'] %>/logs/archive
+}

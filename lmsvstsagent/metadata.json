@@ -1,0 +1,13 @@
+{
+  "name": "unisa-lmsvstsagent",
+  "version": "1.0.0",
+  "author": "unisa",
+  "summary": "VSTS Agent",
+  "license": "Apache 2.0",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 5.2.0"}
+  ]
+}

@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Used to check if current host is part of the "active" data centre based on the X-Web-Host response header.
+#
+# This is useful for tasks such as crons which should only ever run on the active data center.
+#
+
+DC=""
+SITE=""
+QUIET=0
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -h | --help)
+            echo -e "Usage: activedc [-q|--quiet] [-u|--url <http://url>] [-d|--datacentre <cw>]"
+            exit
+            ;;
+        -d | --datacentre)
+            shift
+            DC=$1
+            ;;
+        -u | --url)
+            shift
+            URL=$1
+            ;;
+        -q | --quiet)
+            QUIET=1
+            ;;
+        *)
+        echo "ERROR: unknown parameter \"$1\""
+        exit 1
+        ;;
+    esac
+    shift
+done
+
+if [ "" == "$URL" ]; then
+    echo "ERROR: Moodle application URL not specified (use -u parameter)"
+    exit 1;
+fi
+
+if [ "" == "$DC" ]; then
+    # If DC isn't specified set default based on hostname.
+    DC=`hostname | sed -r "s/itu.*\.([A-Za-z]{2})\..*/\1/g"`
+fi
+
+curl -s -D - "$URL" -o /dev/null | grep -q "X-Web-Host: itu.*\.$DC\.unisa.edu.au"
+isactive=$?
+
+if [ "$QUIET" -ne 1 ]; then
+    if [ $isactive -eq 0 ]; then
+        echo "[$DC] is ACTIVE for $URL"
+    else
+        echo "[$DC] is PASSIVE for $URL"
+    fi
+fi
+
+exit $isactive

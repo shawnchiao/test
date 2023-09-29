@@ -1,0 +1,55 @@
+[<%= @name %>]
+
+user = <%= scope['lmsweb::www_user'] %>
+group = <%= scope['lmsweb::www_user'] %>
+
+<% if @fpm_enable_unix_socket %>
+listen = <%= @fpm_socket_path %>
+<% else %>
+listen = 127.0.0.1:<%= @fpm_tcp_port %>
+<% end %>
+
+listen.backlog = <%= scope['lmsweb::fpm_listen_backlog'] %>
+listen.owner = <%= scope['lmsweb::www_user'] %>
+listen.group = <%= scope['lmsweb::deploygroup'] %>
+listen.mode = 0660
+
+pm = <%= scope['lmsweb::fpm_pm'] %>
+pm.max_children = <%= scope['lmsweb::fpm_pm_max_children'] %>
+pm.start_servers = <%= scope['lmsweb::fpm_pm_start_servers'] %>
+pm.min_spare_servers = <%= scope['lmsweb::fpm_pm_min_spare_servers'] %>
+pm.max_spare_servers = <%= scope['lmsweb::fpm_pm_max_spare_servers'] %>
+pm.max_requests = <%= scope['lmsweb::fpm_pm_max_requests'] %>
+pm.status_path = /status
+
+env[HOSTNAME] = $HOSTNAME
+env[PATH] = /usr/local/bin:/usr/bin:/bin
+env[TMP] = <%= scope['lmsweb::fpm_tmp_dir_path'] %>
+env[TMPDIR] = <%= scope['lmsweb::fpm_tmp_dir_path'] %>
+env[TEMP] = <%= scope['lmsweb::fpm_tmp_dir_path'] %>
+
+catch_workers_output = yes
+
+<% if(@log_prefix_log_name) -%>
+php_admin_value[error_log] = <%= @instance_root %>/logs/php/<%= @name %>_php_error_log
+<% else -%>
+php_admin_value[error_log] = <%= @instance_root %>/logs/php/php_error_log
+<% end -%>
+php_admin_flag[log_errors] = on
+
+<%- if @newrelic_appname -%>
+php_value[newrelic.appname] = <%= @newrelic_appname %>
+php_value[newrelic.error_collector.ignore_exceptions] = <%= @newrelic_collector_ignore_exceptions %>
+php_value[newrelic.error_collector.ignore_errors] = <%= @newrelic_collector_ignore_errors %>
+php_value[newrelic.error_collector.ignore_user_exception_handler] = <%= @newrelic_collector_ignore_user_exception_handler %>
+php_value[newrelic.transaction_tracer.record_sql] = <%= @newrelic_tracer_threshold %>
+php_value[newrelic.transaction_tracer.stack_trace_threshold] = <%= @newrelic_tracer_stack_trace_threshold %>
+php_value[newrelic.transaction_tracer.record_sql] = <%= @newrelic_tracer_record_sql %>
+php_value[newrelic.attributes.enabled] = <%= @newrelic_attributes_enabled %>
+php_value[newrelic.attributes.exclude] = <%= @newrelic_attributes_exclude %>
+php_value[newrelic.attributes.include] = <%= @newrelic_attributes_include %>
+php_value[newrelic.distributed_tracing_enabled] = <%= @newrelic_distributed_tracing_enabled %>
+<%- end -%>
+
+;php_value[opcache.file_cache]  = /var/opt/rh/rh-<%= scope['lmsweb::php_version'] %>/lib/php/opcache
+;php_value[expose_php] = 'off';

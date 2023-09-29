@@ -1,0 +1,70 @@
+stages:
+  - lint
+  - build
+  - publish
+
+lint:
+  stage: lint
+  script:
+    - /usr/local/bin/puppet-lint $CI_PROJECT_DIR --fail-on-warnings
+  allow_failure: false
+
+build_puppet5:
+  stage: build
+  script:
+    - umask 0002
+    - echo "Building Puppet 5 Modules"
+    - /bin/pulp-puppet-module-builder --output-dir=$OUTPUT_DIR --working-dir=$CI_PROJECT_DIR --clean
+    - echo "CI_PROJECTDIR = $CI_PROJECT_DIR"
+  environment:
+    name: puppet5_prod
+  only: 
+    - puppet5
+  needs: ['lint']
+
+build_puppet3:
+  stage: build
+  script:
+    - umask 0002
+    - echo "Building Puppet 3 Modules"
+    - /bin/pulp-puppet-module-builder --output-dir=$OUTPUT_DIR --working-dir=$CI_PROJECT_DIR --clean
+    - echo "CI_PROJECTDIR = $CI_PROJECT_DIR"
+  environment:
+    name: puppet3_prod
+  only:
+    - master
+  when: manual
+  
+publish_puppet5_test:
+  stage: publish
+  script: 
+    - echo "Synchronizing Repo -> ${SERVER}"
+    - /bin/hammer --server=$SERVER --username=$USER --password=$PASSWORD repository synchronize --organization=unisa --product="${PRODUCT}" --name="${REPO}"
+  environment:
+    name: puppet5_test
+  only:
+    - puppet5
+  needs: ['build_puppet5']
+
+publish_puppet5_prod:
+  stage: publish
+  script: 
+    - echo "Synchronizing Repo -> ${SERVER}"
+    - /bin/hammer --server=$SERVER --username=$USER --password=$PASSWORD repository synchronize --organization=unisa --product="${PRODUCT}" --name="${REPO}"
+
+  environment:
+    name: puppet5_prod
+  only:
+    - puppet5
+  needs: ['build_puppet5']
+  
+publish_puppet3_prod:
+  stage: publish
+  script: 
+    - echo "Synchronizing Repo -> ${SERVER}"
+    - /bin/hammer --server=$SERVER --username=$USER --password=$PASSWORD repository synchronize --organization=unisa --product="${PRODUCT}" --name="${REPO}"
+  environment:
+    name: puppet3_prod
+  only:
+    - master
+  needs: ['build_puppet3']

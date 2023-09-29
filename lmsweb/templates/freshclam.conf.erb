@@ -1,0 +1,21 @@
+# Run the freshclam as daemon
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.
+
+# Use system logger (can work together with UpdateLogFile).
+# Default: no
+LogSyslog yes
+
+# database.clamav.net is a round-robin record which points to our most
+# reliable mirrors. It's used as a fall back in case db.XY.clamav.net is
+# not working. DO NOT TOUCH the following line unless you know what you
+# are doing.
+DatabaseMirror database.clamav.net
+
+<% if scope['lmsweb::wwwproxyhost'] != '' -%>
+# Proxy settings
+# Default: disabled
+HTTPProxyServer <%= scope['lmsweb::wwwproxyhost'] %>
+<% end  -%>
+<% if scope['lmsweb::wwwproxyhost'] != '' -%>
+HTTPProxyPort <%= scope['lmsweb::wwwproxyport'] %>
+<% end  -%>

@@ -1,0 +1,184 @@
+<?php  // Moodle configuration file
+
+#####
+#
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.
+#
+#####
+
+unset($CFG);
+global $CFG;
+$CFG = new stdClass();
+
+$CFG->dbtype    = 'pgsql';
+$CFG->dblibrary = 'native';
+$CFG->dbhost    = '<%= @dbhost %>';
+$CFG->dbname    = '<%= @dbname %>';
+$CFG->dbuser    = '<%= @dbuser %>';
+$CFG->dbpass    = '<%= @dbpass %>';
+$CFG->prefix    = '<%= @dbprefix %>';
+$CFG->dboptions = array (
+  'dbpersist' => 0,
+  'dbport' => '',
+  'dbsocket' => '',
+);
+
+$CFG->wwwroot   = '<%= @wwwroot %>';
+$CFG->dataroot  = '<%= @instance_root %>/<%= @data_mount_directory_name %>';
+$CFG->admin     = 'admin';
+$CFG->localcachedir = '<%= @instance_root %>/localcache';
+$CFG->sslproxy = <%= @sslproxy %>;
+
+$CFG->directorypermissions = 02777;
+
+$CFG->mdlinstance = '<%= @instance_name %>';
+$CFG->environment = '<%= @environment %>';
+$CFG->debugdisplay = <%= @debugdisplay %>;
+$CFG->debug = <%= @debug %>;
+$CFG->noemailever = <%= @noemailever %>;
+
+$CFG->forced_plugin_settings = [];
+
+<% if @enableunittest -%>
+$CFG->phpunit_dataroot = '<%= @instance_root %>/<%= @data_mount_directory_name %>_phpunit';
+$CFG->phpunit_prefix = 'phpu_';
+<% end -%>
+
+<% if @enablebehattest -%>
+$CFG->behat_wwwroot = 'http://127.0.0.1:8000';
+$CFG->behat_prefix = 'bht_';
+$CFG->behat_dataroot = '<%= @instance_root %>/<%= @data_mount_directory_name %>_behat';
+<% end -%>
+
+// Log username.
+$CFG->headerloguser = 3;
+
+// System paths
+<% if scope['lmsweb::fpm_install_path'] != '' -%>
+$CFG->pathtophp = '<%= scope['lmsweb::fpm_install_path'] %>/usr/bin/php';
+<% end -%>
+
+// Enable xsendfile (requires corresponding aliases in nginx config).
+$CFG->xsendfile = 'X-Accel-Redirect';
+$CFG->xsendfilealiases = array(
+    '/dataroot/' => $CFG->dataroot,
+    <% if ! @nginx_enable_static_cache -%>
+    <% # Only if nginx cache is not used. %>
+    '/localcachedir/' => $CFG->localcachedir,
+    <% end -%>
+);
+
+<% if @enablealtcompcache -%>
+// Offload alternative component cache to local disk instead of moodledata, this will help
+// prevent inconsistencies when doing performing multi-node releases.
+$CFG->alternative_component_cache = '<%= @instance_root %>/altcompcache/core_component.php';
+<% end -%>
+
+<% if scope['lmsweb::wwwproxyhost'] != '' -%>
+$CFG->proxyhost = '<%= scope['lmsweb::wwwproxyhost'] %>';
+<% end -%>
+<% if scope['lmsweb::wwwproxyport'] != '' -%>
+$CFG->proxyport = <%= scope['lmsweb::wwwproxyport'] %>;
+<% end -%>
+
+<% if @sessionhandler == 'redis' -%>
+$CFG->session_handler_class = '\core\session\redis';
+$CFG->session_redis_host = '<%= @sessionredishost %>';
+$CFG->session_redis_port = <%= @sessionredisport %>;
+<% elsif @sessionhandler == 'redissentinel' -%>
+$CFG->session_handler_class = '\core\session\redissentinel';
+$CFG->session_redissentinel_hosts = <%= @sessionredissentinelhosts %>;
+$CFG->session_redissentinel_master_group = '<%= @sessionredissentinelmastergroup %>';
+<% else -%>
+$CFG->session_handler_class = '\core\session\database';
+$CFG->session_database_acquire_lock_timeout = 120;
+<% end -%>
+<% if @sessionhandler  =~ /^redis/ -%>
+$CFG->session_redis_database = <%= @sessionredisdatabase %>;
+$CFG->session_redis_prefix = 'sess_<%= @instance_name %>_';
+$CFG->session_redis_acquire_lock_timeout = <%= @sessionredisacquiretimeout %>;
+$CFG->session_redis_lock_expire = <%= @sessionredislockexpire %>;
+$CFG->session_redis_max_locks_waiting = <%= @sessionredismaxlockswaiting %>;
+<% end -%>
+<% if @sentinelenablehostcache -%>
+$CFG->sentinel_enablehostcache = true;
+<% end -%>
+
+// Environment specific secrets
+<% if @passwordsaltmain != '' -%>
+$CFG->passwordsaltmain = '<%= @passwordsaltmain %>';
+<% end -%>
+
+<% if @resultentryurl != '' -%>
+// Result Entry URL
+$CFG->forced_plugin_settings['local_resultentry']['resultentryurl'] = '<%= @resultentryurl %>';
+<% end -%>
+
+<% if @resultentrykey != '' -%>
+// Result Entry key
+$CFG->forced_plugin_settings['local_resultentry']['resultentrykey'] = '<%= @resultentrykey %>';
+<% end -%>
+
+<% if @ssokey != '' -%>
+// SSO Encryption Key
+$CFG->sso_key          = '<%= @ssokey %>';
+<% end -%>
+
+<% if @ssosecretkey != '' -%>
+// SSO Secret Key
+$CFG->secret_key       = '<%= @ssosecretkey %>';
+<% end -%>
+
+<% if @debugusers != '' -%>
+// Users with Full Debug output
+// Satellite has issues with values that contain commas. This may need to be adjusted. Commented out in the meantime.
+//$CFG->debugusers       = '<%= @debugusers %>';           // Admin, JM, TD, and System Account.
+<% end -%>
+
+<% if @instancename != '' -%>
+$CFG->instancename     = '<%= @instancename %>';
+<% end -%>
+
+<% if @libssokey != '' -%>
+// Library SSO Encryption Key
+$CFG->lib_sso_key      = '<%= @libssokey %>';
+<% end -%>
+
+<% if @assignsecretkey != '' -%>
+// Assignment Validation Secret Key
+$CFG->assignsecretkey  = '<%= @assignsecretkey %>';
+<% end -%>
+
+<% if @lrsssokey != '' -%>
+$CFG->lrs_sso_key      = '<%= @lrsssokey %>';
+<% end -%>
+
+<% if @twofactorenckey != '' -%>
+$CFG->twofactor_encryption_key = '<%= @twofactorenckey %>';
+<% end -%>
+
+<% if @twofactorlocaltoken != '' -%>
+$CFG->twofactor_persistent_local_token = '<%= @twofactorlocaltoken %>';
+<% end -%>
+
+<% if @turnitintooltwoaccountid != '' and @turnitintooltwosecretkey != '' -%>
+$CFG->forced_plugin_settings['turnitintooltwo']['accountid'] = '<%= @turnitintooltwoaccountid %>';
+$CFG->forced_plugin_settings['turnitintooltwo']['secretkey'] = '<%= @turnitintooltwosecretkey %>';
+<% end -%>
+
+<% if @backupdestination != '' -%>
+$CFG->forced_plugin_settings['backup']['backup_auto_destination'] = '<%= @backupdestination %>';
+<% end -%>
+
+// Apply additional hard coded config if post file is present.
+if (file_exists(__DIR__ . '/moodle/config-post.php')) {
+    require_once(__DIR__ . '/moodle/config-post.php');
+}
+
+// Allow initialisation to be skipped, when only config values are needed.
+if (!defined('UNISASKIPSETUP') || empty(UNISASKIPSETUP)) {
+    require_once(__DIR__ . '/moodle/lib/setup.php');
+}
+
+// There is no php closing tag in this file,
+// it is intentional because it prevents trailing whitespace problems!

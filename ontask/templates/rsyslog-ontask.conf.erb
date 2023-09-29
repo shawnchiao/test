@@ -1,0 +1,13 @@
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+
+if (re_match($syslogtag,"^unisa-ontask:\$")) then
+  action(type="omfile" file="<%= @log_root %>/ontask-web/ontask-web-stdout.log")
+&stop
+
+if (re_match($syslogtag,"^unisa-simple-queue:\$")) then
+  action(type="omfile" file="<%= @log_root %>/simpleQueue/simpleQueue-stdout.log")
+&stop
+
+if (re_match($syslogtag,"^unisa-token-server:\$")) then
+  action(type="omfile" file="<%= @log_root %>/token-server/token-server-stdout.log")
+&stop

@@ -1,0 +1,12 @@
+{
+  "name": "unisa-lmsredis",
+  "version": "2.0.1",
+  "author": "mcleanj",
+  "summary": "UniSA Online Redis Cluster",
+  "license": "Apache-2.0",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [],
+  "data_provider": null
+}

@@ -1,0 +1,8 @@
+##############################################################
+##           This is a puppet managed file                  ##
+##      This file is managed by the ontask puppet module    ##
+## Any changes to this file will be lost at next puppet run ##
+##############################################################
+
+#Add path to include RH software collections packages
+alias node_enable='scl enable <%= @python_version %> rh-redis5 <%= @nodejs_version %> rh-git218 <%= @ruby_version %> <%= @nginx_version %> bash'

@@ -1,0 +1,13 @@
+<%= scope['lmsredis::redislogdir'] %>/*.log {
+    create 660 redis redis
+    weekly
+    rotate 10
+    copytruncate
+    delaycompress
+    compress
+    notifempty
+    missingok
+    su root redis
+    createolddir 655 root redis
+    olddir <%= scope['lmsredis::redislogdir'] %>/archive
+}

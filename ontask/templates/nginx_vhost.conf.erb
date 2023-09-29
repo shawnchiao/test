@@ -1,0 +1,18 @@
+server {
+
+    listen 80;
+    
+    server_name <%= @server_name %>;
+
+    access_log <%= @log_root %>/nginx/access_log main;
+    error_log <%= @log_root %>/nginx/error_log info;
+    # Allow underscores in headers
+    underscores_in_headers on;
+    
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:1337;
+    }
+}

@@ -1,0 +1,60 @@
+# For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+#   * Official Russian Documentation: http://nginx.org/ru/docs/
+
+user nginx;
+worker_processes 4;
+error_log /var/opt/rh/rh-nginx116/log/nginx/error.log;
+pid /var/opt/rh/rh-nginx116/run/nginx/nginx.pid;
+
+# Overrides OS file limits
+worker_rlimit_nofile  8192;
+
+events {
+    worker_connections  8192;
+}
+
+http {
+    include       /etc/opt/rh/rh-nginx116/nginx/mime.types;
+    default_type  application/octet-stream;
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/opt/rh/rh-nginx116/log/nginx/access.log  main;
+
+    sendfile        on;
+    keepalive_timeout  65;
+    client_max_body_size 0;
+    server_tokens off;
+
+    # Override client IP with X-Forwarded-For sent from trusted proxy servers.
+    <%- if @set_real_ip_from -%>
+    set_real_ip_from  <%= @set_real_ip_from %>;
+    <%- end -%>
+    real_ip_recursive on;
+    
+    real_ip_header    X-Forwarded-For;
+
+    # Map dbg_user variable to known debugging hosts (i.e. internal 222 addresses).
+    geo $dbg_user {
+      default 0;
+          }
+
+    # Only trusted users can see hostname header.
+    map $dbg_user $x_host_header {
+      default '';
+      1 $hostname;
+    }
+
+    # Only trusted users can bypass cache.
+    map $dbg_user $pragma_no_cache {
+      default 0;
+      1 $http_pragma;
+    }
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/opt/rh/rh-nginx116/nginx/conf.d/*.conf;
+}

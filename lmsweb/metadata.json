@@ -1,0 +1,14 @@
+{
+  "name": "unisa-lmsweb",
+  "version": "1.0.27",
+  "author": "unisa",
+  "summary": "Build Nginx/PHP7 Moodle/Lime/Mahara Web Node",
+  "license": "None",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 5.2.0"},
+    {"name":"unisa-lmsvstsagent","version_requirement":">= 1.0.0"}
+  ]
+}

@@ -1,0 +1,15 @@
+/var/opt/rh/<%= @nginx_version %>/log/nginx/*log {
+    create 0644 nginx root
+    daily
+    rotate 10
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 `cat /var/opt/rh/<%= @nginx_version %>/run/nginx/nginx.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+    createolddir 770 nginx root
+    olddir /var/opt/rh/<%= @nginx_version %>/log/nginx/*log
+}
+

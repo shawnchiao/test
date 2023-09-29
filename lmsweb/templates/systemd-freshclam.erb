@@ -1,0 +1,15 @@
+# Run the freshclam as daemon
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.
+
+[Unit]
+Description = freshclam scanner
+After = network.target
+
+[Service]
+Type = forking
+ExecStart = /usr/bin/freshclam -d -c 4
+Restart = on-failure
+PrivateTmp = true
+
+[Install]
+WantedBy=multi-user.target

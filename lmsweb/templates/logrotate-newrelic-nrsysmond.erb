@@ -1,0 +1,12 @@
+/var/log/newrelic/nrsysmon.log {
+    rotate <%= scope['lmsweb::logrotate_newrelic_rotate'] %>
+    daily
+    missingok
+    notifempty
+    sharedscripts
+    copytruncate
+    compress
+    su root <%= scope['lmsweb::www_group'] %>
+    createolddir 664 root <%= scope['lmsweb::www_group'] %>
+    olddir /var/log/newrelic/archive
+}

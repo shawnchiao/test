@@ -1,0 +1,11 @@
+{
+  "name": "unisa-lmspg",
+  "version": "2.1.0",
+  "author": "unisa",
+  "summary": "UniSA LTS Postgres module - for development and build purposes only.",
+  "license": "Apache-2.0",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 5.2.0"}
+  ]
+}

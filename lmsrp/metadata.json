@@ -1,0 +1,12 @@
+{
+  "name": "unisa-lmsrp",
+  "version": "1.0.3",
+  "author": "unisa",
+  "summary": "LMS Reverse Proxy",
+  "license": "None",
+  "source": "https://gitlab.unisa.edu.au/lts/puppet",
+  "project_page": null,
+  "issues_url": null,
+  "dependencies": [
+  ]
+}

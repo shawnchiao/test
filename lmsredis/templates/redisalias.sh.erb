@@ -1,0 +1,3 @@
+#!/bin/sh
+alias redis-cli="/opt/rh/<%= scope['lmsredis::redisversion'] %>/root/usr/bin/redis-cli -p <%= scope['lmsredis::redisport'] %>"
+alias sentinel-cli="/opt/rh/<%= scope['lmsredis::redisversion'] %>/root/usr/bin/redis-cli -p <%= scope['lmsredis::sentport'] %>"

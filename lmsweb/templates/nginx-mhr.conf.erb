@@ -1,0 +1,142 @@
+
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+
+upstream php-fpm-<%= @name %> {
+    <% if @fpm_enable_unix_socket %>
+        server unix:/<%= @ngx_socket_path %>;
+    <% else %>
+        server 127.0.0.1:<%= @fpm_tcp_port %>;
+    <% end %>
+}
+
+server {
+    listen <%= @www_port %>;
+	
+	<% if(scope['lmsweb::nginx_ssl_enable']) %>
+    #Enable SSL
+    listen 443 ssl;
+	<% end %>
+	
+    server_name  <%= @server_name %>;
+    root   <%= @instance_root %>/mahara/htdocs;
+
+    # Replace sensitive param values with ****** (i.e. passwords, tokens, etc).
+    set $obsfucatedrequest $request;
+    <% scope['lmsweb::nginx_secret_params'].each do |secret| -%>
+    if  ($obsfucatedrequest ~* (.*)([\?&])<%= secret %>=([^&]*)(.*)) {
+            set $obsfucatedrequest $1$2<%= secret %>=******$4;
+        }
+    <% end -%>
+    
+    <% if(@log_prefix_log_name) %>
+    access_log <%= @instance_root %>/logs/nginx/<%= @name %>_access_log main;
+    error_log <%= @instance_root %>/logs/nginx/<%= @name %>_error_log info;
+    <% else %>
+    access_log <%= @instance_root %>/logs/nginx/access_log main;
+    error_log <%= @instance_root %>/logs/nginx/error_log info;
+    <%end %>
+    set $upstream php-fpm-<%= @name %>;
+
+    # Reveal hostname to trusted users, for debugging purposes.
+    add_header X-Web-Host $x_host_header always;
+
+    <% if @nginx_enable_static_cache %>
+    add_header X-Cache-Status  $upstream_cache_status always;
+    add_header X-Pragma-Status  $pragma_no_cache always;
+
+    set $fastcgi_skipcache 1;
+    if ($uri ~* ^/((theme\/(image.php|font.php|javascript.php|jquery.php|styles.php|yui))|(lib\/(javascript.php|requirejs.php))|(pix\/.+\.(svg|png|jpg|jpeg|gif)))) {
+        set $fastcgi_skipcache 0;
+    }
+    <% end %>
+
+    <% if(scope['lmsweb::nginx_enable_security_headers']) -%>
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    add_header X-Content-Type-Options nosniff;
+    add_header Referrer-Policy "<%= scope['lmsweb::nginx_referrer_policy'] %>";
+    <% end -%>
+
+    location / {
+        index   index.php index.html index.htm;
+    }
+
+    location ~ [^/]\.php(/|$) {
+
+        <% if @nginx_enable_static_cache %>
+        fastcgi_cache STATIC;
+        fastcgi_no_cache      $fastcgi_skipcache $pragma_no_cache;
+        fastcgi_cache_bypass  $fastcgi_skipcache $pragma_no_cache;
+        <% end %>
+
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+        if (!-f $document_root$fastcgi_script_name) {
+            return 404;
+        }
+
+        # Mitigate https://httpoxy.org/ vulnerabilities
+        fastcgi_param  HTTP_PROXY "";
+
+        fastcgi_pass   $upstream;
+        fastcgi_index  index.php;
+        include fastcgi_params;
+
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO        $fastcgi_path_info;
+
+        fastcgi_connect_timeout  <%= scope['lmsweb::nginx_fastcgi_connect_timeout'] %>;
+        fastcgi_read_timeout  <%= scope['lmsweb::nginx_fastcgi_read_timeout'] %>;
+        fastcgi_send_timeout  <%= scope['lmsweb::nginx_fastcgi_send_timeout'] %>;
+        fastcgi_buffers  256 32k;
+        fastcgi_buffer_size  256k;
+        fastcgi_busy_buffers_size  256k;
+        fastcgi_temp_file_write_size  256k;
+        fastcgi_max_temp_file_size  0;
+        fastcgi_intercept_errors  off;
+        fastcgi_ignore_client_abort  off;
+
+    }
+
+    # Enable X-Accel-Redirect for dataroot (this requires corresponding config.php entry)
+    location /dataroot/ {
+        internal;
+        alias  <%= @instance_root %>/<%= @data_mount_directory_name %>/;
+    }
+
+    <% if ! @nginx_enable_static_cache %>
+    # Enable X-Accel-Redirect for localcachedir (this requires corresponding config.php entry)
+    location /localcachedir/ {
+        internal;
+        alias  <%= @instance_root %>/localcache/;
+    }
+    <% end %>
+
+    # Enabled php-fpm status page
+    location ~ ^/status$ {
+        <% scope['lmsweb::nginx_debug_clientmap'].each do |client| %>
+        allow <%= client %>;
+        <% end %>
+        deny all;
+
+        include fastcgi_params;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass  $upstream;
+    }
+
+    location = /robots.txt { access_log off; log_not_found off; }
+    location ~ /\. { deny all; access_log off; log_not_found off; }
+
+    # Custom 50x error page.
+    error_page 500 502 503 504 /500.html;
+    location /500.html {
+        root <%= @instance_root %>/www_error;
+        internal;
+    }
+    # Custom 40x error page.
+    error_page 403 404 /400.html;
+    location /400.html {
+        root <%= @instance_root %>/www_error;
+        internal;
+    }
+}

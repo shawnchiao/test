@@ -1,0 +1,133 @@
+
+upstream lms {
+     # TODO: lb method ip_hash(sticky-sessions)/round_robin/least_conn
+     <%= @nginx_lb_method %>;
+     <% @upstream_servers.each do |val| -%>
+     server <%= val %>;
+     <%end -%>
+}
+
+# Define upstream for each web node so they can be selected using header (used for debug and monitoring).
+<% @upstream_servers.each do |val| -%>
+upstream <%= /itu[^.]+/.match(val) || val %> {
+     server <%= val %>;
+}
+<%end -%>
+
+proxy_cache_path <%= @rp_instance_cache_path %>
+    levels=1:2
+    keys_zone=STATIC:<%= @rp_cache_keysize %>
+    inactive=<%= @rp_cache_inactive %>
+    max_size=<%= @rp_cache_size %>;
+
+server {
+    listen <%= @rp_port %>;
+    server_name <%= @rp_name; %>;
+
+    # Replace sensitive param values with ****** (i.e. passwords, tokens, etc).
+    set $obsfucatedrequest $request;
+    <% @nginx_secret_params.each do |secret| -%>
+    if  ($obsfucatedrequest ~* (.*)([\?&])<%= secret %>=([^&]*)(.*)) {
+            set $obsfucatedrequest $1$2<%= secret %>=******$4;
+        }
+    <% end -%>
+
+    access_log <%= @rp_instance_log_path %>/access_log moodle;
+    error_log <%= @rp_instance_log_path %>/error_log <%= @rp_error_log_level %>;
+
+    # Enable gzip compression for static files.
+    gzip                    on;
+    gzip_disable            "MSIE [1-6]\.(?!.*SV1)";
+    gzip_proxied            any;
+    gzip_buffers            16 8k;
+    gzip_types              text/plain application/javascript application/x-javascript text/xml text/css;
+    gzip_vary               on;
+
+    set $upstream "http://lms";
+
+    # Select specfic upstream (used for debugging/testing).
+    if ($http_x_unisa_req_lms != '') {
+        set $upstream "http://$http_x_unisa_req_lms";
+    }
+
+    # Custom response headers
+    add_header X-Cache-Status  $upstream_cache_status always;
+
+    # Reveal hostname to trusted users, for debugging purposes.
+    add_header X-Cache-Host  $x_host_header always;
+
+    # Prevent caching of requests from debug users as these are cached and sent to other non-debug requests.
+    proxy_no_cache     $dbg_user;
+
+    # Cache zone
+    proxy_cache             STATIC;
+    proxy_cache_methods     GET HEAD;
+
+    # Cache TTLs
+    proxy_cache_valid       200 <%= @rp_cache_valid_200 %>;
+
+    # TODO: Should we allow any stale cache to be served when upstream errors, timesout, is updating or returns 50x?
+    proxy_cache_use_stale   error timeout invalid_header updating http_500 http_502 http_503 http_504;
+
+    # Bypass cache (for trusted hosts only).
+    proxy_cache_bypass      $pragma_no_cache;
+
+    # Set headers for upstream web node.
+    proxy_set_header    Host $host;
+    proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Forwarded-Proto $scheme;
+
+    # Pass range headers to client.
+    proxy_set_header Range $http_range;
+    proxy_set_header If-Range $http_if_range;
+
+    # Reset/remove X-MOODLEUSER header value so it doesn't get passed back to client.
+    proxy_hide_header  X-MOODLEUSER;
+
+    # Timeouts.
+    proxy_connect_timeout <%= @nginx_proxy_connect_timeout %>;
+    proxy_read_timeout <%= @nginx_proxy_read_timeout %>;
+    proxy_send_timeout <%= @nginx_proxy_send_timeout %>;
+
+    location / {
+        # Default behaviour is to not add to, or serve anything from cache.
+        # This will occur only when all other locations don't match the current request.
+        proxy_no_cache      1;
+        proxy_cache_bypass  1;
+        proxy_pass          $upstream;
+    }
+
+    # Cache static content.
+    location ~* ^/((theme\/(image.php|font.php|javascript.php|jquery.php|styles.php|yui))|(lib\/(javascript.php|requirejs.php|yuilib))|(pix\/.+\.(svg|png|jpg|jpeg|gif))) {
+        proxy_pass $upstream;
+    }
+    <%- if @nginx_oflinejs_cache_enabled -%>
+
+    # Cache offline.js check file but add
+    # cache-control header to tell browser not to cache it.
+    location /local/unisa_module/offline/index.html {
+        add_header Cache-Control no-store;
+        proxy_pass          $upstream;
+    }
+
+    #cache offline.js content
+    location ~* ^\/local\/unisa_module\/offline\/.+\.(css|js)$ {
+        proxy_pass $upstream;
+    }
+    <%- end -%>
+
+    # Custom 50x error page.
+    error_page 500 502 503 504 /500.html;
+    location /500.html {
+        root <%= @rp_instance_www_error_path %>;
+        internal;
+    }
+
+    # Custom 40x error page.
+    error_page 403 404 /400.html;
+    location /400.html {
+        root <%= @rp_instance_www_error_path %>;
+        internal;
+    }
+
+}

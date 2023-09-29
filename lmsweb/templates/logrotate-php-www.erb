@@ -1,0 +1,14 @@
+<%= @instance_root %>/logs/php/*log {
+    create <%= @log_mode %> <%= scope['lmsweb::www_user'] %> <%= scope['lmsweb::www_group'] %>
+    daily
+    rotate <%= scope['lmsweb::logrotate_php_rotate'] %>
+    missingok
+    notifempty
+    sharedscripts
+    delaycompress
+    su <%= scope['lmsweb::www_user'] %> <%= scope['lmsweb::www_group'] %>
+    postrotate
+        /bin/kill -SIGUSR1 `cat /var/opt/remi/<%= scope['lmsweb::php_version'] -%>/run/php-fpm/php-fpm.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+    olddir <%= @instance_root %>/logs/php/archive
+}

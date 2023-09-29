@@ -1,0 +1,33 @@
+#!/bin/bash
+
+DEST_PATH='<%= $lmsutils::postfix_sasl::postfix_sasl_pass_file %>'
+USER='root'
+GROUP='root'
+MODE='600'
+ECHO_CMD='/bin/echo'
+CHMOD_CMD='/bin/chmod'
+CHOWN_CMD='/bin/chown'
+MV_CMD='/bin/mv -f'
+POSTMAP_CMD='/sbin/postmap'
+SERVICE_RELOAD_CMD='/bin/systemctl reload postfix.service'
+
+function usage() {
+  ${ECHO_CMD} "Usage: "
+  ${ECHO_CMD} "  ${0} {sasl_password_file_source}"
+  ${ECHO_CMD} ""
+  exit 1
+}
+
+### Main ###
+[[ ($# -ne 1 || ${1} == '-h' || ${1} = '--help') ]] && usage
+[[ ! -f $1 ]] && echo "File ${1} does not exist" && usage
+
+${ECHO_CMD} "Moving ${1} to ${DEST_PATH}"
+${MV_CMD} ${1} ${DEST_PATH}
+${ECHO_CMD} "Setting permissions on ${DEST_PATH}"
+${CHOWN_CMD} ${USER}:${GROUP} ${DEST_PATH}
+${CHMOD_CMD} ${MODE} ${DEST_PATH}
+${ECHO_CMD} "Running postmap ${DEST_PATH}"
+${POSTMAP_CMD} ${DEST_PATH}
+${ECHO_CMD} "Reloading postifx"
+${SERVICE_RELOAD_CMD}

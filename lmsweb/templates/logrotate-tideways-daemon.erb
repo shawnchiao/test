@@ -1,0 +1,10 @@
+/var/log/tideways/*.log {
+        daily
+        missingok
+        copytruncate
+        rotate <%= scope['lmsweb::logrotate_tideways_rotate'] %>
+        compress
+        notifempty
+        createolddir 644 root root
+        olddir /var/log/tideways/archive
+}

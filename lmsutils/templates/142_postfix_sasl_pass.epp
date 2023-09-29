@@ -1,0 +1,2 @@
+<%= $lmsutils::postfix_sasl::sudo_user %> ALL= NOPASSWD: <%= $lmsutils::postfix_sasl::script_path %>
+Defaults:<%= $lmsutils::postfix_sasl::sudo_user %> !requiretty

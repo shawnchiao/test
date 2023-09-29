@@ -1,0 +1,14 @@
+[Unit]
+Description=UniSA SMTP Sink Instance
+After=network.target
+
+[Service]
+Type=simple
+User=<%= @smtp_sink_user %>
+UMask=0022
+WorkingDirectory=<%= @smtp_sink_home %>    
+ExecStart=/usr/sbin/smtp-sink -d <%= @smtp_sink_prefix_format %> -c <%= @smtp_bind_address %>:<%= @smtp_port %> <%= @smtp_max_backlog %>
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

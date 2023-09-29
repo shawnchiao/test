@@ -1,0 +1,35 @@
+<%= @instance_root %>/logs/cron/*log {
+    create <%= @log_mode %> <%= @log_owner %> <%= @log_group %>
+    daily
+    rotate <%= scope['lmsweb::logrotate_cron_rotate'] %>
+    missingok
+    notifempty
+    compress
+    sharedscripts
+<% if(@log_owner != 'root') -%>
+    su <%= @log_owner %> <%= @log_group %>
+<% end -%>
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir <%= @log_mode %> <%= @log_owner %> <%= @log_group %>
+    olddir <%= @instance_root %>/logs/cron/archive
+}
+
+<%= @instance_root %>/logs/unisacli/*log {
+    create <%= @log_mode %> <%= @log_owner %> <%= @log_group %>
+    daily
+    rotate <%= scope['lmsweb::logrotate_cron_rotate'] %>
+    missingok
+    notifempty
+    compress
+    sharedscripts
+<% if(@log_owner != 'root') -%>
+    su <%= @log_owner %> <%= @log_group %>
+<% end -%>
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir <%= @log_mode %> <%= @log_owner %> <%= @log_group %>
+    olddir <%= @instance_root %>/logs/unisacli/archive
+}

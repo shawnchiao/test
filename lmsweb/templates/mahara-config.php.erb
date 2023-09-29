@@ -1,0 +1,33 @@
+<?php  // Mahara configuration file
+
+#####
+#
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.
+#
+#####
+
+$cfg = new stdClass();
+
+$cfg->dbtype   = 'postgres';
+$cfg->dbhost   = '<%= @dbhost %>';
+$cfg->dbport   = null; // Change if you are using a non-standard port number for your database
+$cfg->dbname   = '<%= @dbname %>';
+$cfg->dbuser   = '<%= @dbuser %>';
+$cfg->dbpass   = '<%= @dbpass %>';
+
+$cfg->dataroot = '<%= @instance_root %>/<%= @data_mount_directory_name %>';
+$cfg->wwwroot   = '<%= @wwwroot %>';
+
+$cfg->sendemail = <%= @sendmail %>;
+$cfg->sslproxy = <%= @sslproxy %>;
+
+$cfg->searchplugin = '<%= @searchplugin %>';
+$cfg->emailcontact = '<%= @emailcontact %>';
+$cfg->noreplyaddress = '<%= @noreplyaddress %>';
+$cfg->dblogerror = <%= @dblogerror %>;
+$cfg->urlsecret = '<%= @urlsecret %>';
+$cfg->skins = <%= @skins %>;
+$cfg->passwordsaltmain = '<%= @passwordsaltmain %>';
+$cfg->productionmode = <%= @productionmode %>;
+$cfg->pathtoclam = '<%= @pathtoclam %>';
+$cfg->usersuniquebyusername = <%= @usersuniquebyusername %>;

@@ -1,0 +1,8 @@
+# Allowed recipients map
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+<%= @postfix_recipient_map %>
+
+<%- if @postfix_block_unmapped_recipients -%>
+# Catch-all
+/.*@.*/ devnull@localhost
+<%- end -%>

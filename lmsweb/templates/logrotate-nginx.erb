@@ -1,0 +1,14 @@
+/var<%= scope['lmsweb::nginx_install_path'] %>/log/nginx/*log {
+    create 0644 <%= scope['lmsweb::www_user'] %> <%= scope['lmsweb::www_group'] %>
+    daily
+    rotate <%= scope['lmsweb::logrotate_nginx_rotate'] %>
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 `cat /var<%= scope['lmsweb::nginx_install_path'] %>/run/nginx/nginx.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+    createolddir 644 <%= scope['lmsweb::www_user'] %> <%= scope['lmsweb::www_group'] %>
+    olddir /var<%= scope['lmsweb::nginx_install_path'] %>/log/nginx/archive
+}

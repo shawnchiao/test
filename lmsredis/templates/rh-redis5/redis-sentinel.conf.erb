@@ -1,0 +1,14 @@
+# WARNING: This file is managed by the lmsredis puppet module
+protected-mode <%= @sentprotectedmode %>
+port <%= @sentport %>
+daemonize <%= @sentdaemonize %>
+<% if (@sentdaemonize == 'yes') -%>
+pidfile <%= @redisinstalldir %>/run/redis-sentinel.pid
+<% end -%>
+logfile <%= @redislogdir %>/sentinel.log
+dir <%= @sentrootdir %>
+sentinel monitor unisaredis <%= @redismaster %> <%= @redisport %> <%= @quorumnum %>
+sentinel down-after-milliseconds unisaredis <%= @downafterms %>
+sentinel parallel-syncs unisaredis 1
+sentinel failover-timeout unisaredis <%= @failovertimeout %>
+sentinel deny-scripts-reconfig yes

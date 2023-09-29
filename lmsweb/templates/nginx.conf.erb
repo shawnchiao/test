@@ -1,0 +1,95 @@
+# For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+#   * Official Russian Documentation: http://nginx.org/ru/docs/
+#
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+
+user  <%= @www_user %>;
+worker_processes  <%= @nginx_worker_processes %>;
+error_log  /var<%= @nginx_install_path %>/log/nginx/error.log;
+pid        /var<%= @nginx_install_path %>/run/nginx/nginx.pid;
+
+# Overrides OS file limits
+worker_rlimit_nofile  <%= @nginx_worker_rlimit_nofile %>;
+
+events {
+    worker_connections  <%= @nginx_worker_connections %>;
+    multi_accept on;
+}
+
+http {
+    include       /etc<%= @nginx_install_path %>/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$realip_remote_addr - $remote_user [$time_local] "$obsfucatedrequest" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    log_format  moodle  '$remote_addr - $upstream_http_x_moodleuser [$time_local] "$obsfucatedrequest" '
+                      '$status $body_bytes_sent "$http_referer" $upstream_cache_status '
+                      '"$http_user_agent" "$realip_remote_addr"';
+
+    access_log  /var<%= @nginx_install_path %>/log/nginx/access.log  main;
+    sendfile        on;
+    keepalive_timeout  65;
+    client_max_body_size 0;
+    server_tokens <%= @nginx_server_tokens %>;
+
+    <% if @nginx_set_real_ip_from -%>
+        # Override client IP with X-Forwarded-For sent from proxy.
+        <% @nginx_set_real_ip_from.each do |proxy| -%>
+        set_real_ip_from  <%= proxy %>;
+        <% end -%>
+        real_ip_recursive on;
+    <% end -%>
+
+    real_ip_header    X-Forwarded-For;
+
+    # Map dbg_user variable to known debugging hosts (i.e. internal 222 addresses).
+    geo $dbg_user {
+      default 0;
+      <% @nginx_debug_clientmap.each do |client| -%>
+      <%= client %> 1;
+      <% end -%>
+    }
+
+    # Ensure client hostname is set in $x_host_header for known hosts.
+    map $dbg_user $x_host_header {
+      default '';
+      1 $hostname;
+    }
+
+    <% if @nginx_enable_static_cache %>
+    # The following options are only relevant, and therefore only set, when
+    # nginx's fastcgi_cache. This cache should not be enabled when a seperate
+    # reverse proxy layer is used.
+    map $dbg_user $pragma_no_cache {
+      default 0;
+      1 $http_pragma;
+    }
+
+    # Define shared static cache store.
+    fastcgi_cache_path <%= @nginx_static_cache_path %>
+         levels=1:2
+         keys_zone=STATIC:<%= @nginx_cache_keysize %>
+         inactive=<%= @nginx_cache_inactive %>
+         max_size=<%= @nginx_cache_size %>;
+
+    # Configure shared static cache, with bypass limited to $dbg_user.
+	fastcgi_cache_key $scheme$request_method$host$request_uri;
+	fastcgi_cache_methods GET HEAD;
+	fastcgi_cache_use_stale error timeout invalid_header updating http_500;
+	fastcgi_cache_valid 200 <%= @nginx_cache_valid_200 %>;
+	<% end %>
+	
+	<% if(@nginx_ssl_enable) %>
+	#Specify a global SSL Certificate
+	ssl_certificate <%= @nginx_config_path %>/ssl/<%= @fqdn %>.cert;
+	ssl_certificate_key <%= @nginx_config_path %>/ssl/<%= @fqdn %>.key;
+	<% end %>
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc<%= @nginx_install_path %>/nginx/conf.d/*.conf;
+}

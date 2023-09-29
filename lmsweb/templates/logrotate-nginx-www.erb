@@ -1,0 +1,16 @@
+<%= @instance_root %>/logs/nginx/*log {
+    create <%= @log_mode %> <%= @log_owner %> <%= @log_group %>
+    daily
+    rotate <%= scope['lmsweb::logrotate_nginx_rotate'] %>
+    missingok
+    notifempty
+    compress
+    sharedscripts
+<% if(@log_owner != 'root') -%>
+    su <%= @log_owner %> <%= @log_group %>
+<% end -%>
+    postrotate
+        /bin/kill -USR1 `cat /var<%= scope['lmsweb::nginx_install_path'] %>/run/nginx/nginx.pid 2>/dev/null` 2>/dev/null || true
+    endscript
+    olddir <%= @instance_root %>/logs/nginx/archive
+}

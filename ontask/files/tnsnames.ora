@@ -1,0 +1,3020 @@
+#################################################
+#
+# Filename ...... : tnsnames.ora
+# Version         : v5.2
+# Date            : 28-June-2013
+# Edited	  : History
+#		  : JD 29-01-2011 creation
+#		  : JD 05-12-2011 Added VGER
+#		  : JD 05-12-2012 Added MERCDVL amd MERCTST
+#		  : JD 22-02-2013 Added MERCPRD
+#		  : JD 28-06-2013 Added the SP13 databases
+#		  : JD 28-06-2013 Added the SP14 databases
+#
+#
+#################################################
+AODVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = aodvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = aodvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = AODVL)
+    )
+  )
+
+AOPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=AOPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=AOPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=AOPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=AOPRD)
+    )
+  )
+
+AOPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=aopre1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=aopre2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=AOPRE)
+    )
+  )
+
+AOTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = aotst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = aotst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = AOTST)
+    )
+  )
+
+
+CAAB_DEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=CAAB_DEV)
+    )
+  )
+
+CAAB_TST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=CAAB_TST)
+    )
+  )
+
+CAISADM.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISADM1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISADM2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISADM3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CAISADM)
+    )
+  )
+
+CAISDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caisdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caisdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CAISDVL)
+    )
+  )
+
+
+CAISPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CAISPRD)
+    )
+  )
+
+CAISPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CAISPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CAISPRE)
+    )
+  )
+
+CAISTRN.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caistrn1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caistrn2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CAISTRN)
+    )
+  )
+
+
+CAISTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caistst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = caistst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CAISTST)
+    )
+  )
+
+
+CAUDIT_DEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=CAUDIT_DEV)
+    )
+  )
+
+CAUDIT_PRD.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2a-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2b-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2c-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=CAUDIT_PRD)
+    )
+  )
+
+CAUDIT_TST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=CAUDIT_TST)
+    )
+  )
+
+CEI.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=itupl-rac1d-vip.ml.unisa.edu.au)
+      (PORT=1522)
+    )
+    (CONNECT_DATA=
+      (SID=CEI)
+    )
+  )
+
+CEI_DEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=itudl-rac1w-vip.ml.unisa.edu.au)
+      (PORT=1522)
+    )
+    (CONNECT_DATA=
+      (SID=CEI_DEV)
+    )
+  )
+
+CEI_TST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=itudl-rac2w-vip.cw.unisa.edu.au)
+      (PORT=1522)
+    )
+    (CONNECT_DATA=
+      (SID=CEI_TST)
+    )
+  )
+
+CMSDVL.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSDVL1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSDVL2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSDVL3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CMSDVL)
+    )
+  )
+
+CMSTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSTST1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSTST2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CMSTST3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CMSTST)
+    )
+  )
+
+CONFDVL.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFDVL1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFDVL2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFDVL3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CONFDVL)
+    )
+  )
+
+CONFPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=CONFPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=CONFPRD)
+    )
+  )
+
+CRMDMO.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = crmdmo.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMDMO)
+    )
+  )
+
+CRMDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMDVL)
+    )
+  )
+
+CRMMIG.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = crmmig.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMMIG)
+    )
+  )
+
+CRMTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmtst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmtst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMTST)
+    )
+  )
+
+CRMUAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmuat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmuat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMUAT)
+    )
+  )
+
+CRMUTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmutst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = crmutst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CRMUTST)
+    )
+  )
+
+DTMGDVL.WORLD =
+  (DESCRIPTION =
+   (ADDRESS_LIST=
+    (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgdvl.oracle.unisa.edu.au)(PORT = 1521))
+   )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = DTMGDVL)
+    )
+  )
+
+DTMGTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgtst.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = DTMGTST)
+    )
+  )
+
+DTMGTSTA.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgtsta.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = DTMGTSTA)
+    )
+  )
+
+DTMGPRE.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgpre.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = DTMGPRE)
+    )
+  )
+
+DTMGPRD.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgprd-cw.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = dtmgprd-ml.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = DTMGPRD)
+    )
+  )
+
+EDWDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = edwdvl.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EDWDVL)
+    )
+  )
+
+
+EDWPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=EDWPRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EDWPRD)
+    )
+  )
+
+EDWPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=EDWPRE.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EDWPRE)
+    )
+  )
+
+EDWTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=EDWTST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EDWTST)
+    )
+  )
+
+EMSDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = emsdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = emsdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EMSDVL)
+    )
+  )
+
+
+EMSPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EMSPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EMSPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EMSPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EMSPRD)
+    )
+  )
+
+EMSTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = emstst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = emstst2.oracle.unisa.edu.au)(PORT = 1521))
+   )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EMSTST)
+    )
+  )
+
+EPDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = epdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = epdvl2.oracle.unisa.edu.au)(PORT = 1521))
+     )
+     (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EPDVL)
+    )
+  )
+
+
+EPPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EPPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EPPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EPPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EPPRD)
+    )
+  )
+
+EPTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = eptst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = eptst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EPTST)
+    )
+  )
+
+
+EQUIDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = equidvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = equidvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EQUIDVL)
+    )
+  )
+
+
+EQUIPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EQUIPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EQUIPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EQUIPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EQUIPRD)
+    )
+  )
+
+EQUITST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = equitst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = equitst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EQUITST)
+    )
+  )
+
+EXTDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = extdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = extdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EXTDVL)
+    )
+  )
+
+
+EXTPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EXTPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EXTPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EXTPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EXTPRD)
+    )
+  )
+
+EXTPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EXTPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=EXTPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=EXTPRE)
+    )
+  )
+
+EXTTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = exttst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = exttst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = EXTTST)
+    )
+  )
+
+
+FIN1DVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = fin1dvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = fin1dvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = FIN1DVL)
+    )
+  )
+
+FIN1DVLA.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = fin1dvla1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = fin1dvla2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = FIN1DVLA)
+    )
+  )
+
+FIN1PRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1PRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1PRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1PRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=FIN1PRD)
+    )
+  )
+
+FIN1TST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1TST1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1TST2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=FIN1TST3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=FIN1TST)
+    )
+  )
+
+HPDVL.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HPDVL.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HPDVL)
+    )
+  )
+
+HPPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HPPRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HPPRD)
+    )
+  )
+
+HPTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HPTST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HPTST)
+    )
+  )
+
+HRDVL.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HRDVL.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HRDVL)
+    )
+  )
+
+HRDVLA.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = ora6-scan.oracle.unisa.edu.au)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = HRDVLA)
+    )
+  )
+
+HRPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HRPRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HRPRD)
+    )
+  )
+
+HRTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=HRTST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=HRTST)
+    )
+  )
+
+ITUDEV-SQL1_LEARNCONDIS.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUDEV-SQL1_LEARNCONDIS)
+    )
+  )
+
+ITUDEV-SQL1_STARCOM.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUDEV-SQL1_STARCOM)
+    )
+  )
+
+ITUPROD-SQCL1_CAAB.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2a-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2b-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2c-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUPROD-SQCL1_CAAB)
+    )
+  )
+
+ITUPROD-SQCL1_STARCOM.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2a-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2b-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2c-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUPROD-SQCL1_STARCOM)
+    )
+  )
+
+ITUPW-PAC1.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2a-vip)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2b-vip)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2c-vip)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUPW-PAC1)
+    )
+  )
+
+ITUTEST-SQL1_STARCOM.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUTEST-SQL1_STARCOM)
+    )
+  )
+
+ITUTW-PAC1.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=ITUTW-PAC1)
+    )
+  )
+
+LEARNCONDIS_TST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=LEARNCONDIS_TST)
+    )
+  )
+
+LMSCDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmscdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmscdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSCDVL)
+    )
+  )
+
+LMSCLOAD.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+     (ADDRESS_LIST =
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmscload1.oracle.unisa.edu.au)(PORT = 1521))
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmscload2.oracle.unisa.edu.au)(PORT = 1521))
+    ) 
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSCLOAD)
+    )
+  )
+
+
+LMSCPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSCPRD)
+    )
+  )
+
+LMSCPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSCPRE)
+    )
+  )
+
+LMSCSAND.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCSAND1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSCSAND2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSCSAND1)
+    )
+  )
+
+LMSCTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+     (ADDRESS_LIST =
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmsctst1.oracle.unisa.edu.au)(PORT = 1521))
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmsctst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSCTST)
+    )
+  )
+
+LMSCTSTA.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+     (ADDRESS_LIST =
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmsctsta1.oracle.unisa.edu.au)(PORT = 1521))
+       (ADDRESS = (PROTOCOL = TCP)(HOST = lmsctsta2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSCTSTA)
+    )
+  )
+
+LMSCUAT.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=LMSCUAT.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSCUAT)
+    )
+  )
+
+LMSNCDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmsncdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmsncdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSNCDVL)
+    )
+  )
+
+LMSNCPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=lmsncprd1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=lmsncprd2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=lmsncprd3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSNCPRD)
+    )
+  )
+
+LMSNCTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmsnctst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = lmsnctst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = LMSNCTST)
+    )
+  )
+
+LMSTRN.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSTRN1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=LMSTRN2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=LMSTRN)
+    )
+  )
+
+MD9DEV.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9dev1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9dev2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MD9DEV)
+    )
+  )
+
+MD9DMO.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = md9dmo.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9DMO)
+    )
+  )
+
+MD9LOAD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9LOAD.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9LOAD)
+    )
+  )
+
+MD9MIG.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9mig.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9MIG)
+    )
+  )
+
+MD9PRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9PRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9PRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9PRE)
+    )
+  )
+
+MD9PROD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9PROD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9PROD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MD9PROD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9PROD)
+    )
+  )
+
+MD9RAM.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = ora7-scan.oracle.unisa.edu.au)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MD9RAM)
+    )
+  )
+
+MD9TEST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9test1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9test2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MD9TEST)
+    )
+  )
+
+MD9TRN.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9trn1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9trn2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MD9TRN)
+    )
+  )
+
+MD9UAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9uat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9uat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MD9UAT)
+    )
+  )
+
+MD9UTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9utst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = md9utst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MD9UTST)
+    )
+  )
+
+
+MERCDEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=mercdev.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=MERCDEV)
+      (SID=MERCDEV)
+    )
+  )
+
+MERCDVL.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = mercdvl1.oracle.unisa.edu.au)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = mercdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MERCDVL)
+    )
+  )
+
+MERCTST.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = merctst1.oracle.unisa.edu.au)(PORT = 1521))
+    (ADDRESS = (PROTOCOL = TCP)(HOST = merctst2.oracle.unisa.edu.au)(PORT = 1521))
+    (LOAD_BALANCE = yes)
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = MERCTST)
+    )
+  )
+
+MERCPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MERCPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MERCPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=MERCPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=MERCPRD)
+    )
+  )
+
+MERCPROD.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=MERCPROD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=MERCPROD)
+      (SID=MERCPROD)
+    )
+  )
+
+MERCTEST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=merctest.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=MERCTEST)
+      (SID=MERCTEST)
+    )
+  )
+
+MOBILEBIL_DEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=MOBILEBIL_DEV)
+    )
+  )
+
+MOBILEBIL_TEST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=MOBILEBIL_TEST)
+    )
+  )
+
+NABFDEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (COMMUNITY=TCP)
+      (PROTOCOL=TCP)
+      (HOST=nabfdev.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=NABFDEV)
+      (SID=NABFDEV)
+    )
+  )
+
+NABFPROD.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=NABFPROD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=NABFPROD)
+      (SID=NABFPROD)
+    )
+  )
+
+OCIBDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OCIBDVL)
+    )
+  )
+
+
+OCIBPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OCIBPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OCIBPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OCIBPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OCIBPRD)
+    )
+  )
+
+OCIBPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OCIBPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OCIBPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OCIBPRE)
+    )
+  )
+
+OCIBTRN.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibtrn1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibtrn2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OCIBTRN)
+    )
+  )
+
+OCIBTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibtst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibtst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OCIBTST)
+    )
+  )
+
+OCIBUAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibuat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = ocibuat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OCIBUAT)
+    )
+  )
+
+
+OREPDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = orepdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = orepdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OREPDVL)
+    )
+  )
+
+
+OREPPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OREPPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OREPPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=OREPPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OREPPRD)
+    )
+  )
+
+OREPPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=oreppre1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=oreppre2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OREPPRE)
+    )
+  )
+
+OREPTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = oreptst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = oreptst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = OREPTST)
+    )
+  )
+
+
+OWBDVL.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=OWBDVL.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OWBDVL)
+    )
+  )
+
+OWBPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=OWBPRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OWBPRD)
+    )
+  )
+
+OWBPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=OWBPRE.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OWBPRE)
+    )
+  )
+
+OWBTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=OWBTST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=OWBTST)
+    )
+  )
+
+PCMSDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmsdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmsdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PCMSDVL)
+    )
+  )
+
+
+PCMSPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PCMSPRD)
+    )
+  )
+
+PCMSPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PCMSPRE)
+    )
+  )
+
+PCMSSAND.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSSAND1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PCMSSAND2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PCMSSAND)
+    )
+  )
+
+PCMSTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmstst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmstst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PCMSTST)
+    )
+  )
+
+
+PCMSUAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmsuat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pcmsuat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PCMSUAT)
+    )
+  )
+
+PHRDDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = phrddvl.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PHRDDVL)
+    )
+  )
+
+PHRDTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = phrdtst.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PHRDTST)
+    )
+  )
+
+PHRDPRE.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = phrdpre.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PHRDPRE)
+    )
+  )
+
+PHRDPRD.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = phrdprd.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PHRDPRD)
+    )
+  )
+
+PRODREC.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PRODREC1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PRODREC2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PRODREC)
+    )
+  )
+
+PRODTST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PRODTST1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PRODTST2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=PRODTST3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=PRODTST)
+    )
+  )
+
+PSHBDVL.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = pshbdvl.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PSHBDVL)
+    )
+  )
+
+PSHBTST.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = pshbtst.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PSHBTST)
+    )
+  )
+    
+PSHBPRE.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = pshbpre.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA = 
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PSHBPRE)
+    )
+  )
+
+REDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = redvl.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = REDVL)
+    )
+  )
+
+REPOS.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = repos.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = REPOS)
+    )
+  )
+
+REPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=REPRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=REPRD)
+    )
+  )
+
+RETST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=RETST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RETST)
+    )
+  )
+
+RM4DVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = rm4dvl.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = RM4DVL)
+    )
+  )
+
+RM4DVLA.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = rm4dvla.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = RM4DVLA)
+    )
+  )
+
+RM4DVLB.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS = (PROTOCOL = TCP)(HOST = rm4dvlb.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RM4DVLB)
+    )
+  )
+
+RM4PRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=RM4PRD.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RM4PRD)
+    )
+  )
+
+RM4TST.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=RM4TST.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RM4TST)
+    )
+  )
+
+RMEDVL.WORLD =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = RMEDVL.oracle.unisa.edu.au)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RMEDVL)
+    )
+  )
+
+RMANCAT.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RMANCAT1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RMANCAT2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RMANCAT3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RMANCAT)
+    )
+  )
+
+RPTDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RPTDVL)
+    )
+  )
+
+RPTLOAD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=rptload1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=rptload2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RPTLOAD)
+    )
+  )
+
+RPTPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptpre1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptpre2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RPTPRE)
+    )
+  )
+
+RPTPROD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RPTPROD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RPTPROD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=RPTPROD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=RPTPROD)
+    )
+  )
+
+RPTTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rpttst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rpttst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RPTTST)
+    )
+  )
+
+RPTUAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptuat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rptuat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RPTUAT)
+    )
+  )
+
+SCHDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schdvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schdvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SCHDVL)
+    )
+  )
+
+RSCHDVL.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rschdvl.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RSCHDVL)
+    )
+  )
+  
+RSCHDVLA.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rschdvla.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RSCHDVL)
+    )
+  )
+
+RSCHTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rschtst.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RSCHTST)
+    )
+  )
+  
+RSCHPRE.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rschpre.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RSCHPRE)
+    )
+  )
+
+RSCHPRD.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = rschprd.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = RSCHPRD)
+    )
+  )
+
+SCHPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schprd1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schprd2.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schprd3.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = SCHPRD)
+    )
+  )
+
+
+SCHPRE.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schpre1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schpre2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SCHPRE)
+    )
+  )
+
+SCHTST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schtst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schtst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SCHTST)
+    )
+  )
+
+SCHUAT.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schuat1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = schuat2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = SCHUAT)
+    )
+  )
+
+SHIBPRD.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SHIBPRD1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SHIBPRD2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SHIBPRD3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=SHIBPRD)
+    )
+  )
+
+SP11DV35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=sp11dv35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP11DV35)
+      (SID=SP11DV35)
+    )
+  )
+
+SP11PR35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=SP11PR35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP11PR35)
+      (SID=SP11PR35)
+    )
+  )
+
+SP11TR35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=SP11TR35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP11TR35)
+      (SID=SP11TR35)
+    )
+  )
+
+SP12DV35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=SP12DV35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP12DV35)
+      (SID=SP12DV35)
+    )
+  )
+
+SP12PR35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=SP12PR35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP12PR35)
+      (SID=SP12PR35)
+    )
+  )
+
+SP12TR35.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=SP12TR35.oracle.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SP12TR35)
+      (SID=SP12TR35)
+    )
+  )
+
+SP13DV39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=YES)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP13DV39.ORACLE.UNISA.EDU.AU)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=SP13DV39)
+    )
+  )
+
+SP13TR39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=YES)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP13TR39.ORACLE.UNISA.EDU.AU)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=SP13TR39)
+    )
+  )
+  
+SP13PR39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP13PR39.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=SP13PR39)
+    )
+  )
+ 
+SP14DV39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=YES)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP14DV39.ORACLE.UNISA.EDU.AU)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=SP14DV39)
+    )
+  )
+
+SP14TR39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=YES)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP14TR39.ORACLE.UNISA.EDU.AU)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=DEDICATED)
+      (SERVICE_NAME=SP14TR39)
+    )
+  )
+  
+SP14PR39.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=SP14PR39.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=SP14PR39)
+    )
+  )
+
+SP17DV39.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = sp17dv39.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = SP17DV39)
+    )
+  )
+
+SP17PT39.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = sp17pt39.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = SP17PT39)
+    )
+  )
+
+SP17TR39.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = sp17tr39.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = SP17TR39)
+    )
+  )
+
+SP17PR39.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = yes)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = sp17pr39.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = dedicated)
+      (SERVICE_NAME = SP17PR39)
+    )
+  )
+
+SPTEST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=gawler.levels.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=SPTEST)
+      (SID=SPTEST)
+    )
+  )
+
+UNINETAD_DEV.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1z-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1y-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac1x-vip.ml.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=UNINETAD_DEV)
+    )
+  )
+
+UNINETAD_PRD.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2a-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2b-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itupl-rac2c-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=UNINETAD_PRD)
+    )
+  )
+
+UNINETAD_TST.WORLD=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2z-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2y-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=itudl-rac2x-vip.cw.unisa.edu.au)
+        (PORT=1522)
+      )
+    )
+    (CONNECT_DATA=
+      (SID=UNINETAD_TST)
+    )
+  )
+
+USADVL.WORLD=
+ (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = usadvl1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = usadvl2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = USADVL)
+    )
+  )
+
+USADW.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=USADW1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=USADW2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=USADW3.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=USADW)
+    )
+  )
+
+USAPRE.WORLD=
+  (DESCRIPTION=
+    (LOAD_BALANCE=yes)
+    (ADDRESS_LIST=
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=USAPRE1.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+      (ADDRESS=
+        (PROTOCOL=TCP)
+        (HOST=USAPRE2.oracle.unisa.edu.au)
+        (PORT=1521)
+      )
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)
+      (SERVICE_NAME=USAPRE)
+    )
+  )
+
+USATST.WORLD =
+  (DESCRIPTION =
+    (LOAD_BALANCE = YES)
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = usatst1.oracle.unisa.edu.au)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = usatst2.oracle.unisa.edu.au)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = USATST)
+    )
+  )
+
+
+VGER.WORLD=
+  (DESCRIPTION=
+    (ADDRESS=
+      (PROTOCOL=TCP)
+      (HOST=ilms.library.unisa.edu.au)
+      (PORT=1521)
+    )
+    (CONNECT_DATA=
+      (GLOBAL_NAME=VGER)
+      (SID=VGER)
+    )
+  )

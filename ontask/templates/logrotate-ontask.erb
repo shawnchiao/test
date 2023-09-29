@@ -1,0 +1,77 @@
+<%= @log_root %>/ontask-web/*.log
+{
+    create 660 root root
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir 700 root root
+    olddir <%= @log_root %>/ontask-web/archive
+}
+
+<%= @log_root %>/simpleQueue/*.log
+{
+    create 660 root root
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir 700 root root
+    olddir <%= @log_root %>/simpleQueue/archive
+}
+
+<%= @log_root %>/token-server/*.log
+{
+    create 660 root root
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir 700 root root
+    olddir <%= @log_root %>/token-server/archive
+}
+
+<%= @log_root %>/nginx/*_log
+{
+    create 644 root root
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        /bin/kill -USR1 `cat /var/opt/rh/<%= @nginx_version %>/run/nginx/nginx.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+    createolddir 700 root root
+    olddir <%= @log_root %>/nginx/archive
+}
+
+<%= @log_root %>/newrelic/*.log
+{
+    create 644 www-ontask www-ontask
+    daily
+    rotate 100
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    su <%= @www_ontask_user %> <%= @www_ontask_group %>
+    createolddir 750 <%= @www_ontask_user %> <%= @www_ontask_group %>
+    olddir <%= @log_root %>/newrelic/archive
+}

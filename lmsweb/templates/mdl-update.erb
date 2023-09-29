@@ -1,0 +1,103 @@
+#!/bin/bash
+
+#################
+#
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+#
+#################
+
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PHPBIN="<%= @fpm_install_path %>/usr/bin/php"
+
+INSTALL=0
+SHORTNAME=""
+FULLNAME=""
+UPGRADE=0
+PURGECACHE=0
+BUILDCSS=0
+STATUS=0
+
+# TODO: Prevent running as root!
+
+if [ "moodle" != ${PWD##*/} ]; then
+    echo "Working directory must be named moodle."
+    exit 1;
+fi
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -h | --help)
+            echo -e "Usage: mdl-update [-i|--install] [-u|--upgrade] [-p|--purge] [-r|--reset]"
+            echo -e " [-f|--fullname=<fullname>] [-s|--shortname=<shortname]"
+            echo -e "Run Moodle installs and upgrades.\n"
+            echo -e "Parameters:"
+            echo -e " -i, --install-moodle\t\tRun database install"
+            echo -e " -n, --shortname\t\tShort name (applies to new installs only) - default = default"
+            echo -e " -f, --fullname\t\tFull name (applies to new installs only)  - default = default"
+            echo -e " -u, --upgrade-moodle\t\tRun upgrade"
+            echo -e " -p, --purge-cache\t\tPurge shared caches"
+            echo -e " -c, --build-css\t\tPre-compile theme CSS (into cache) from LESS/SCSS templates (requires MDL-59123)."
+            echo -e " -s, --status\t\tDon't make any changes, just report."
+            exit
+            ;;
+
+        -i | --install-moodle)
+            INSTALL=1
+            ;;
+        -n | --shortname)
+            shift
+            SHORTNAME=$1
+            ;;
+        -f | --fullname)
+            shift
+            FULLNAME=$1
+            ;;
+        -u | --upgrade-moodle)
+            UPGRADE=1
+            ;;
+        -u | --purge-cache)
+            PURGECACHE=1
+            ;;
+        -c | --build-css)
+            BUILDCSS=1
+            ;;
+        -s | --status)
+            STATUS=1
+            ;;
+        *)
+            echo "ERROR: unknown parameter \"$1\""
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+
+# todo: capture output from the following
+if [ "$INSTALL" == 1 ]; then
+    time $PHPBIN admin/cli/install_database.php --fullname=$FULLNAME --shortname=$SHORTNAME --adminpass=moodle --agree-license
+fi
+
+if [ "$PURGECACHE" == 1 ]; then
+    # Reset permissions
+    time $PHPBIN admin/cli/purge_caches.php
+fi
+
+if [ "$UPGRADE" == 1 ]; then
+    if [ "$STATUS" == 0 ]; then
+        time $PHPBIN admin/cli/upgrade.php --non-interactive
+    else
+        if (timeout 5 $PHPBIN admin/cli/upgrade.php 2>&1 | grep -wqz "Thanks for coming") ; then
+            echo 'UPGRADE STATUS: Not required'
+        elif (timeout 5 $PHPBIN admin/cli/upgrade.php 2>&1 | grep -wqz "Upgrading Moodle database from") ; then
+            echo 'UPGRADE STATUS: Pending'
+        elif (timeout 5 $PHPBIN admin/cli/upgrade.php 2>&1 | grep -wqz "OLDER than the version") ; then
+            echo 'UPGRADE STATUS: Invalid'
+        fi
+    fi
+fi
+
+if [ "$BUILDCSS" == 1 ]; then
+    CURRENTTHEME="$($PHPBIN admin/cli/cfg.php --name=theme)"
+    time $PHPBIN admin/cli/build_theme_css.php --themes=$CURRENTTHEME
+fi

@@ -1,0 +1,19 @@
+# PUPPET WARNING: This file is managed by puppet, any manual changes WILL be overwritten.$
+
+if (re_match($syslogtag,"^<%= @name %>-cron\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/cron/<%= @name %>-cron.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/cron/cron.log")
+<% end -%>
+&stop
+
+<% if @apptype == 'mdl' %>
+if (re_match($syslogtag,"^<%= @name %>-backup\\[[0-9]+\\]:\$")) then
+<% if(@log_prefix_log_name) -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/cron/<%= @name %>-backup.log")
+<% else -%>
+  action(type="omfile" file="<%= @instance_root %>/logs/cron/backup.log")
+<% end -%>
+&stop
+<% end %>
